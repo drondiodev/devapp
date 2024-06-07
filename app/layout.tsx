@@ -3,10 +3,15 @@ import { GeistSans } from "geist/font/sans";
 import { GeistMono } from "geist/font/mono";
 import { APP_NAME, APP_DESCRIPTION } from "@/constants/index";
 import "@/styles/globals.css";
+import Banner from "@/components/banner";
+import Header from "@/components/header";
+import Footer from "@/components/footer";
+import Container from "@/components/container";
 
 export const metadata: Metadata = {
   title: `${APP_NAME}`,
   description: `${APP_DESCRIPTION}`,
+  // icons: [{ rel: "icon", url: "/favicon.ico" }],
 };
 
 export default function RootLayout({
@@ -18,11 +23,19 @@ export default function RootLayout({
     <html
       lang="fr"
       suppressHydrationWarning
-      className={`min-h-screen bg-background antialiased ${GeistSans.variable} ${GeistMono.variable}`}
+      className={`antialiased scroll-smooth ${GeistSans.variable} ${GeistMono.variable}`}
     >
-      <body>
-        <div className="absolute inset-0 -z-10 h-full w-full bg-white bg-[radial-gradient(#e5e7eb_1px,transparent_1px)] [background-size:16px_16px]"></div>
-        {children}
+      <body
+        className={`bg-zinc-100 text-zinc-900 min-h-screen flex flex-col overflow-x-hidden ${GeistSans.variable} ${GeistMono.variable}`}
+      >
+        <Container>
+          <Banner />
+          <Header />
+          <main role="main" className="flex-grow">
+            {children}
+          </main>
+          <Footer />
+        </Container>
       </body>
     </html>
   );
